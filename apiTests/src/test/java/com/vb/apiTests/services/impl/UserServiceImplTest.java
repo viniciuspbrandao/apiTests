@@ -24,6 +24,7 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class UserServiceImplTest {
 
+    public static final String OBJECT_NOT_FOUND = "Object Not Found.";
     private static final Integer ID = 1;
     private static final String NAME = "Vinicius";
     private static final String EMAIL = "vinicius@mail.com";
@@ -64,13 +65,13 @@ class UserServiceImplTest {
 
     @Test
     void whenFindByIdThenReturnAnObjectNotFoundException(){
-        when(repository.findById(anyInt())).thenThrow(new ObjectNotFoundException("Object Not Found."));
+        when(repository.findById(anyInt())).thenThrow(new ObjectNotFoundException(OBJECT_NOT_FOUND));
 
         try {
             service.findById(ID);
         } catch (Exception ex){
             assertEquals(ObjectNotFoundException.class, ex.getClass());
-            assertEquals("Object Not Found.", ex.getMessage());
+            assertEquals(OBJECT_NOT_FOUND, ex.getMessage());
         }
     }
 
