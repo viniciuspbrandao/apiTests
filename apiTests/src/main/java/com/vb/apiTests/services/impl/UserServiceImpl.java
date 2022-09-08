@@ -27,7 +27,7 @@ public class UserServiceImpl implements UsersService {
     @Override
     public Users findById(Integer id) {
         Optional<Users> obj = repository.findById(id);
-        return obj.orElseThrow(()-> new ObjectNotFoundException("Object not found."));
+        return obj.orElseThrow(()-> new ObjectNotFoundException("Object Not Found."));
     }
 
     public List<Users> findAll(){
